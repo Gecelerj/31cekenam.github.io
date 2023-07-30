@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>simulate.io</title>
+
+	<style type="">
+
+		input{
+
+			height: 100px;
+
+			width: 700px;
+
+			border-radius: 20px;
+
+			font-size: 50px;
+
+			margin-top: 100px;
+
+			padding-left: 10px;
+
+			padding-right: 10px;
+
+		}
+
+		body {
+
+			color: white;
+
+			font-size: 30px;
+
+		}
+
+		button{
+
+			color: white;
+
+			border-radius: 20px;
+
+			color: black;
+
+			height: 60px;
+
+			width: 300px;
+
+			margin-top: 100px;
+
+			cursor: pointer;
+
+			font-size: 40px;
+
+		}
+
+		button:hover {
+
+			background-color: gray;
+
+			color: black;
+
+			transition: 0.5s;
+
+		}
+
+
+
+	</style>
+
+</head>
+
+<body style="background: #000;">
+
+	<center>
+
+		<button onclick="bot()">START</button>
+
+        <!-- <button onclick="">STOP</button> -->
+
+		<br>
+
+		<b>ROOM NAME</b>
+
+		<input type="text" name="" class="room_name" placeholder="0000">
+
+		<b style="margin-left: 100px;">BOT NAME</b>
+
+        <input type="text" name="" class="name" placeholder="Bot_name" value="RUN">
+
+        <b>SERVER</b>
+
+        <input type="text" name="" class="server" placeholder="5" value="5">
+
+        <br>
+
+        <b>ip adres</b>
+
+		<input type="text" name="" class="ip" placeholder="ip adress" value="" placeholder="00.0000.0000.00">
+
+        <br>
+
+        <input type="text" name="" class="ip1" placeholder="ip adress" value="" placeholder="00.0000.0000.00">
+
+        <br>
+
+        <input type="text" name="" class="ip2" placeholder="ip adress" value="" placeholder="00.0000.0000.00">
+
+        <br>
+
+        <input type="text" name="" class="ip3" placeholder="ip adress" value="" placeholder="00.0000.0000.00">
+
+        <br>
+
+        <input type="text" name="" class="ip4" placeholder="ip adress" value="" placeholder="00.0000.0000.00">
+
+        <br>
+
+        <input type="text" name="" class="ip5" placeholder="ip adress" value="" placeholder="00.0000.0000.00">
+
+        <br>
+
+        <input type="text" name="" class="ip6" placeholder="ip adress" value="" placeholder="00.0000.0000.00">
+
+        <br>
+
+        <input type="text" name="" class="ip7" placeholder="ip adress" value="" placeholder="00.0000.0000.00">
+
+        <br>
+
+        <input type="text" name="" class="ip8" placeholder="ip adress" value="" placeholder="00.0000.0000.00">
+
+        <br>
+
+        <input type="text" name="" class="ip9" placeholder="ip adress" value="" placeholder="00.0000.0000.00">
+
+	</center>
+
+<script>
+
+
+
+function bot() {
+
+    const room_name = document.querySelector(".room_name").value
+
+    console.log(room_name);
+
+    const server = document.querySelector(".server").value
+
+
+
+
+
+
+
+    const name_bot = document.querySelector(".name").value
+
+    // const name = ['RAN','RUN','RIN','REN','RON']${name[(Math.floor(Math.random() * (name.length)))]}  
+
+    // DEYISIK ADLAR UCUN BU KONUMU ACIN
+
+    const  wsip = [document.querySelector(".ip").value,document.querySelector(".ip1").value,document.querySelector(".ip2").value,document.querySelector(".ip3").value,document.querySelector(".ip4").value,document.querySelector(".ip5").value,document.querySelector(".ip6").value,document.querySelector(".ip7").value,document.querySelector(".ip8").value,document.querySelector (".ip9").value];
+
+
+
+
+
+
+
+    for (var i = 0; i < wsip.length; i++) {
+
+
+
+        window.addEventListener('keypress', (e) => {
+
+            connect(parseInt(e.key)-1);
+
+        });
+
+        let room;
+
+        let d;
+
+        const ws = new WebSocket(`wss://${wsip[i]}/__cpw.php?u=${btoa(`wss://server0${server}.gartic.io/socket.io/?EIO=3&transport=websocket`)}&o=aHR0cHM6Ly9nYXJ0aWMuaW8=`);
+
+        setInterval(
+
+        ws.onopen = () => {
+
+            ws.send(`42[3,{"v":20000,"nick":"${name_bot}${Math.floor(Math.random() * 50)}","avatar":"${Math.floor(Math.random() * 0,)}","sala":"${room_name}"}]`);
+
+            function close() {
+
+                ws.close()
+
+            }
+
+          setTimeout(close, 1000);
+
+        }
+
+        , 500);
+
+        // 	for(let i = 0; i < x610.length; i++){
+
+        //             let t;
+
+        //             const ws = new WebSocket(wss://${x610[i]}/__cpw.php?u=${btoa(x10o)}&o=aHR0cHM6Ly9nYXJ0aWMuaW8=);
+
+
+
+        //             ws.onopen = async () => {
+
+        //                 ws.send(42[3,{"v":20000,"nick":"ST${Math.floor(Math.random() * 9999)}","avatar":0,"sala":"${r}"}]);
+
+        //                 ws.send(42[46,1675119253574]);
+
+        //             }
+
+        // }
+
+        ws.onmessage = (m) => {
+
+            ws.onmessage = (m) => {
+
+                const d = JSON.parse(m.data.slice(2));
+
+                if(d[0] == 5){
+
+                    p = d[5];
+
+                    t = d[2];
+
+                    for(let i = 0; i < p.length; i++){
+
+                        if(!p[i].nick.startsWith('run')){
+
+                            ws.send(`42[45,${t},["${p[0].id}",true]]`);
+
+                            ws.send(`42[45,${t},["${p[1].id}",true]]`);
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            room = d[5];
+
+        }
+
+
+
+        setInterval(() => {
+
+            ws.send(`2`);
+
+            ws.send(`42[42,${room}]`);
+
+        }, 25000);
+
+    }
+
+}
+
+
+
+
+
+</script>
+
+<!--for(let i = 1; i < 100; i++){
+
+        fetch('https://cdn.blockaway.net/requests?fso=', {
+
+            method: 'POST',
+
+            headers: {
+
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.7',
+
+                'Content-Type': 'application/x-www-form-urlencoded',
+
+                'Sec-Fetch-Dest': 'document',
+
+                'Sec-Fetch-Mode': 'navigate',
+
+                'Upgrade-Insecure-Requests': '1'
+
+            },
+
+            body: new URLSearchParams(`url=a&proxyServerId=${i}&frontOrigin=https://cdn.blockaway.net&demo=0`),
+
+        })
+
+        .then(res => {
+
+            if(res.status == 500){
+
+                return;
+
+            }
+
+        }).catch(err => {});
+
+    } -->
+
+<!-- bu kod bizi ayaxda tutan koddur!!! -->
+
+</body>
+
+</html>
